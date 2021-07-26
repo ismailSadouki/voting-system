@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompetitionController;
+use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
+Route::get('/s', function () {
+    echo 'vo'.'ieurye'.'te';
+});
 
 Route::post('store/competition', [CompetitionController::class, 'store'])->name('store.competition');
+Route::post('/vote', [VoteController::class, 'vote'])->name('vote');
 
 Route::get('{unique_url}', [CompetitionController::class, 'show']);

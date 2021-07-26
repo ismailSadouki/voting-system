@@ -17,6 +17,7 @@ class CreateContestantsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('unique_url');
+            $table->integer('number_of_votes')->default(0);
             $table->timestamps();
         });
     }

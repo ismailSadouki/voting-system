@@ -107,6 +107,7 @@
 @endsection
 
 @section('content')
+
     <section>
         <div class="grid-container">
             <div class="item">
@@ -129,7 +130,7 @@
 
                             {{ $contestant->name }}{{ $contestant->id }}
 
-                            <div class="votes-style"> 0 </div>
+                            <div class="votes-style"> {{ $contestant->number_of_votes }} </div>
 
                         </div>              
                                  
@@ -152,8 +153,9 @@
         <div>
               <div>
                 <h3 id="ltitle"></h3>
+                <input type="hidden" name="lid" id="lid" value="">
                 <hr>
-                <div class="create_vote" id="create_vote">نعم</div>
+                <div class="create_vote" id="create_vote" onclick="createVote()">نعم</div>
                 <div class="buy cl2" id="buy">طلب فزعة 100 صوت</div>
                   <button id="modelVoteClose" onclick="modelVoteClose()">اغلاق</button>
     
@@ -166,14 +168,42 @@
 
 @section('scripts')
     <script>
+  
         function modelVoteShow(id, name) {
             $('#ltitle').text('هل انت متأكد من رغبتك في التصويت ل' +  name + '؟');
-            var contestant_id = id;
+            $("input[name='lid']").val(id);
             document.getElementById('modelVote').style.display = 'block';
         }
 
         function modelVoteClose() {
             document.getElementById('modelVote').style.display = 'none';
         }
+
+        function createVote() {
+            let id = $("input[name='lid']").val();
+            let unique_url = "{{$data['unique_url']}}"
+            let voted = localStorage.getItem('vo' + unique_url + 'ted');
+
+            $.ajax({
+                type: 'post',
+                url: "{{ route('vote') }}",
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'id': id,
+                    'voted': voted,
+                    'unique_url': unique_url
+                },
+                success: function (data) {
+                    console.log(data);
+                    if(data['vo_uniqueUrl_ted']){
+                        localStorage.setItem(data['vo_uniqueUrl_ted'], data.vo_uniqueUrl_ted);
+                    }
+                }, error: function(reject) {
+                    
+                }
+            })
+
+        }
+
     </script>
 @endsection
