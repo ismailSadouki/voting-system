@@ -102,6 +102,7 @@
             padding: 10px 0px 0px 0;
             font-size: 16px;
             margin: 0px 90px 10px 0px;
+          
         }
     </style>
 @endsection
@@ -121,20 +122,9 @@
 
             <div class="item item-four c1">
                 <h2>قائمة المتسابقين</h2>
-                <div class="child-items">
-
-                    @foreach ($data['contestants'] as $key => $contestant)
-
-                        <div class="item" onclick="modelVoteShow({{$contestant->id}}, '{{$contestant->name }}')">
-                            <div class="order">{{$key + 1}}</div>
-
-                            {{ $contestant->name }}{{ $contestant->id }}
-
-                            <div class="votes-style"> {{ $contestant->number_of_votes }} </div>
-
-                        </div>              
-                                 
-                    @endforeach
+                <div class="child-items " id="">
+                   
+                    @widget('contestantsWidget', ['unique_url' => $data['unique_url']])
 
                 </div>
             </div>
@@ -142,7 +132,8 @@
             <div class="item c1">
                 <h3>الوقت المتبقي لانتهاء التصويت</h3>
             </div>
-            <div class="item">6</div>
+            <div class="item">6              
+            </div>
       
           </div>
     </section>
@@ -151,19 +142,23 @@
 
     <div id="modelVote" class="modelVote"  >
         <div>
-              <div>
+              <div class="vote">
                 <h3 id="ltitle"></h3>
+                <p style="color: red; visibility: hidden" class="error" id="error" >لا يمكنك التصويت أكثر من مرة</p>
+                <p style="color: green; visibility: hidden" class="success" id="success" >تم التصويت بنجاح</p>
                 <input type="hidden" name="lid" id="lid" value="">
                 <hr>
                 <div class="create_vote" id="create_vote" onclick="createVote()">نعم</div>
-                <div class="buy cl2" id="buy">طلب فزعة 100 صوت</div>
-                  <button id="modelVoteClose" onclick="modelVoteClose()">اغلاق</button>
+                <a href="" class="payment cl2" id="payment">طلب فزعة 100 صوت</a>
+                 <button id="modelVoteClose" onclick="modelVoteClose()">اغلاق</button>
     
               </div>
             
         </div>
        
     </div>
+
+
 @endsection
 
 @section('scripts')
@@ -172,11 +167,15 @@
         function modelVoteShow(id, name) {
             $('#ltitle').text('هل انت متأكد من رغبتك في التصويت ل' +  name + '؟');
             $("input[name='lid']").val(id);
+            $("#payment").attr("href", "{{ url('payment/') }}" + '/' + id );
             document.getElementById('modelVote').style.display = 'block';
         }
 
         function modelVoteClose() {
             document.getElementById('modelVote').style.display = 'none';
+            document.getElementById('success').style.visibility = 'hidden';
+            document.getElementById('error').style.visibility = 'hidden';
+
         }
 
         function createVote() {
@@ -194,10 +193,16 @@
                     'unique_url': unique_url
                 },
                 success: function (data) {
-                    console.log(data);
-                    if(data['vo_uniqueUrl_ted']){
-                        localStorage.setItem(data['vo_uniqueUrl_ted'], data.vo_uniqueUrl_ted);
+                    if(data.status == true) {
+                        document.getElementById('success').style.visibility = 'visible';
+                        if(data['vo_uniqueUrl_ted']){
+                            localStorage.setItem(data['vo_uniqueUrl_ted'], data.vo_uniqueUrl_ted);
+                        }
+                    } else {
+                        document.getElementById('success').style.visibility = 'hidden';
+                        document.getElementById('error').style.visibility = 'visible';
                     }
+                    
                 }, error: function(reject) {
                     
                 }
@@ -205,5 +210,6 @@
 
         }
 
+       
     </script>
 @endsection

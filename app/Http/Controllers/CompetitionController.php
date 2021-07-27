@@ -56,13 +56,12 @@ class CompetitionController extends Controller
     public function show(Request $request, $unique_url)
     {
         $competition = Competition::where('unique_url', $unique_url)->first();
-        $contestants = Contestant::where('unique_url', $unique_url)->select('id', 'name', 'number_of_votes')->orderByDesc('number_of_votes')->get();
         
         $data = [
             'unique_url' => $unique_url,
             'competition_name' => $competition->name,
             'competition_roles' => $competition->roles,
-            'contestants' => $contestants,
+            
         ];
         
         return view('show_competition',compact('data'));

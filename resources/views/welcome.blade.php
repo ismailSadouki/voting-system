@@ -118,6 +118,7 @@
 
     <script>
 
+
         function modelCreateShow() {
             document.getElementById('modelCreate').style.display = 'block';
         }
@@ -141,7 +142,15 @@
             let name = $("input[name='name']").val();
             let roles = $("input[name='roles']").val();
             let contestants = $("textarea[name='contestants']").val().split('\n');
-           
+           const getNewUrl = (url, newPathName) => {
+            let hostName = url.substr(0, url.lastIndexOf('/') + 1)
+                if(hostName == 'http://' || hostName == 'https://') {
+                    return url + '/' + newPathName;
+                } else {
+                    return hostName + newPathName;
+                }
+           }
+
             $.ajax({
                 type: 'post',
                 url: "{{ route('store.competition') }}",
@@ -153,8 +162,13 @@
                 },
                 success: function (data) {
                     console.log(data);
-                    let url = '{{url()->current()}}' + '/' + data['unique_url'];
-                    successCreateCompetition(data, url)
+                    // let url = '{{url()->current()}}' + '/' + data['unique_url'];
+
+                    let url = '{{url()->current()}}';
+                    successCreateCompetition(data, getNewUrl(url, data['unique_url']))
+
+                    
+
                 }, error: function(reject) {
                     
                 }
