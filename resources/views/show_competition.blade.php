@@ -197,8 +197,13 @@ if(navigator.cookieEnabled == false) {
 
         }
 
-
+        let timout = true; 
         function createVote() {
+            if(timout == false) {
+                  return timout;
+              }
+              timout = false;
+
             let id = $("input[name='lid']").val();
             let unique_url = "{{$data['unique_url']}}"
             let voted = localStorage.getItem('vo' + unique_url + 'ted');
@@ -213,7 +218,7 @@ if(navigator.cookieEnabled == false) {
                     'unique_url': unique_url
                 },
                 success: function (data) {
-                    // console.log('my ip is '+ data.ip + ' and my ip in database is ' + data.verification_ip)
+                  
                     if(data.status == true) {
                         document.getElementById('content-success').style.display = 'flex';
                         document.getElementById('content-error').style.display = 'none';
@@ -221,10 +226,12 @@ if(navigator.cookieEnabled == false) {
                         if(data['vo_uniqueUrl_ted']){
                             localStorage.setItem(data['vo_uniqueUrl_ted'], data.vo_uniqueUrl_ted);
                         }
+                        timout = true;
                     } else {
                         document.getElementById('content-success').style.display = 'none';
                         document.getElementById('content-error').style.display = 'flex';
                         document.getElementById('content-vote').style.display = 'none';
+                        timout = true;
                     }
                     
                 }, error: function(reject) {
