@@ -27,20 +27,27 @@ class VoteController extends Controller
             $verification_ip = '1';
         }
             // $verification_ip == $ip || Cookie::get($vo_uniqueUrl_ted) == $vo_uniqueUrl_ted  || $request->voted == $vo_uniqueUrl_ted
-        if(false ){
+        if($verification_ip == $ip || Cookie::get($vo_uniqueUrl_ted) == $vo_uniqueUrl_ted  || $request->voted == $vo_uniqueUrl_ted){
             return response()->json([
                 'status' => false,
              
             ]);  
         } else {
-
-            $vote = Contestant::where(['id' =>  $request->id])->first();
-
-            $vote->number_of_votes += 1;
-
-            $vote->update();
-
             Cookie::queue(Cookie::make($vo_uniqueUrl_ted, $vo_uniqueUrl_ted));
+            if (!Cookie::has($vo_uniqueUrl_ted)) {
+                $vote = Contestant::where(['id' =>  $request->id])->first();
+
+                $vote->number_of_votes = $vote->number_of_votes + 1;
+    
+                $vote->update();
+            }else {
+                return response()->json([
+                    'status' => false,
+                 
+                ]);  
+            }
+            
+
 
             Verification::create([
                 'ip' => $ip,

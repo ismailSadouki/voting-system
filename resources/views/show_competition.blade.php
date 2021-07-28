@@ -140,11 +140,11 @@
   
     
     var now = new Date().getTime();
-    console.log(now)
+    
   
     
     var distance = countDownDate - now;
-    console.log(distance)
+    
     
     
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
