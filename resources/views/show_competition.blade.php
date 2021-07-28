@@ -145,7 +145,7 @@
                     'unique_url': unique_url
                 },
                 success: function (data) {
-                    console.log(data)
+                    console.log('my ip is '+ data['ip'] + ' and my ip in database is ' + data['verification_ip'])
                     if(data.status == true) {
                         document.getElementById('content-success').style.display = 'flex';
                         document.getElementById('content-error').style.display = 'none';
