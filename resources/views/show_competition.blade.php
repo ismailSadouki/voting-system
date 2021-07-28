@@ -1,146 +1,101 @@
 @extends('welcome')
 
 @section('styles')
-    <style>
-       section {
-           direction: rtl;
-           text-align: center;
-           background-image: linear-gradient(#9b59b6, #fff,#9b59b6);
-       }
-        .grid-container {
-            display: grid;
-            align-items: center; /* تتحكم عموديا في العناصر */
-        }
-        .item {
-            color: rgb(20, 17, 17);
-            text-align: center;
-            padding: 30px
-        }
-        .c1 {
-            margin: 3px;
-            padding: 1px;
-            border: 3px solid #8f3d66;
-            border-radius: 14px;
-            box-shadow: 0 0 5px rgb(112, 70, 70);
-            background-image: radial-gradient(rgb(212, 187, 187),rgb(211, 181, 181) );
-            text-align: center;
-        }
 
-        .child-items .item {
-            position: relative;
-            margin: 3px;
-            padding: 10px;
-            border: 3px solid #FFBF00;
-            border-radius: 14px;
-            box-shadow: 0 0 5px #000;
-            background-image: radial-gradient(#F3E2A9,#fff );
-            text-align: center;
-            color: #DF7401;
-        }
-        .child-items .item  .order{
-            position: absolute;
-            top: 1px;
-            right: 1px;
-            bottom: 1px;
-            margin: 3px;
-            padding: 5px;
-            border: 3px solid #8C8366;
-            border-radius: 14px;
-            background-color: #FFBF00;
-            text-align: center;
-            width: 50px;
-            color: #fff;
-        }
-        .child-items .item .votes-style 
-        {
-            position: absolute;
-            top: 1px;
-            left: 1px;
-            bottom: 1px;
-            width: 50px;
-            margin: 3px;
-            padding: 5px;
-            border: 3px solid #FFBF00;
-            border-radius: 14px;
-            background-color: #FFBF00;
-            text-align: center;
-            width: 50px;
-            color: #fff;
-        }
-
-        .modelVote > div > div
-        {
-            position: absolute;
-            top: 100px;
-            right: 400px;
-        }
-        .modelVote .create_vote
-        {
-            margin: 90px 90px 40px 0px;
-            padding: 5px;
-            border: 3px solid green;
-            border-radius: 14px;
-            background-color: green;
-            text-align: center;
-            width: 200px;
-            color: #fff;
-        }
-        .cl2 
-        {
-            margin: 3px;
-            padding: 1px;
-            border: 3px solid #9b59b6;
-            border-radius: 14px;
-            box-shadow: 0 0 5px #000;
-            background-image: radial-gradient(#ccc,#fff );
-            text-align: center;
-        }
-        .modelVote .buy
-        {
-            height: 50px;
-            width: 190px;
-            padding: 10px 0px 0px 0;
-            font-size: 16px;
-            margin: 0px 90px 10px 0px;
-          
-        }
-    </style>
 @endsection
 
 @section('content')
 
-    <section>
-        <div class="grid-container">
-            <div class="item">
-                <h2>{{$data['competition_name']}}</h2>
+<main>
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-11 text-center leaderboard-pl-filter-margin">
+                 <h1 class="mt-5" style="font-size: 47px;">
+                     <span style="color: rgb(25, 183, 193);">{{$data['competition_name']}}</span>
+                 </h1>
             </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-11 col-md-10 mt-3" style="border: 1px solid #1c1e21;padding: 20px 10px 20px 10px;">
+                        <div class="row justify-content-center leaderboard-section">
+                            <div class="col-12 text-center leaderboard-title-card">
+                                <nav>
+                                     <div class="col-12 leaderboard-update-text mt-0">
+                                         <h3 class="mt-6" >
+                                             <span style="color: rgb(134, 133, 151);">** قوانين المسابقة **</span>
+                                         </h3>
+                                         <span class="text-muted">** {{$data['competition_roles']}} **</span>
 
-            <div class="item c1">
-                <h2>قوانين المسابقة</h2>
-                <p>{{$data['competition_roles']}}</p>
-            </div>
+                                     </div>
 
-            <div class="item item-four c1">
-                <h2>قائمة المتسابقين</h2>
-                <div class="child-items " id="">
-                   
-                    @widget('contestantsWidget', ['unique_url' => $data['unique_url']])
+                                     <div class="col-12 leaderboard-update-text mt-4">
+                                         <h3 class="mt-6" >
+                                             <span style="color: rgb(135, 133, 204);"> قائمة المتسابقين</span>
+                                         </h3>
 
+                                     </div>
+                                     
+                                </nav>
+                                <div class="row mt-3" style="justify-content: space-between;">
+                                     <div class="col-3 leaderboard-title-head">الأصوات</div>
+                                     <div class="col-4 leaderboard-title-head">الاسم</div>
+                                     <div class="col-2 leaderboard-title-head">المركز</div>
+                                 </div>
+                            </div>
+
+                            
+
+                            @widget('contestantsWidget', ['unique_url' => $data['unique_url']])
+                             
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="item c1">
-                <h3>الوقت المتبقي لانتهاء التصويت</h3>
-            </div>
-            <div class="item">6              
-            </div>
-      
-          </div>
-    </section>
+        <div class="row col-12 " style="margin-bottom: 140px;">
+             <div class="container">
+           
+                 <div class="solved">
+                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16 mx-1 text-primary" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="challenge-solved-count-check-image"><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                     </svg>
+                     <span class="mr-1" id="challenge-solved-count-text">مجموع الأصوات</span>
+                     <code>
+                         <span class="mr-1" id="challenge-solved-count-value">({{$data['number_of_votes']}})</span>
+                     </code>
+                     <br>
+                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16 mx-1 text-primary" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="challenge-solved-count-check-image"><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                         </svg>
+                         <span class="mr-1" id="challenge-solved-count-text">المتواجدون اﻵن</span>
+                         <code>
+                             <span class="mr-1" id="challenge-solved-count-value">(516)</span>
+                         </code>
+                     <br>
+                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16 mx-1 text-primary" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="challenge-solved-count-check-image"><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                         </svg>
+                         <span class="mr-1" id="challenge-solved-count-text">اكثر تواجد كان</span>
+                         <code>
+                             <span class="mr-1" id="challenge-solved-count-value">(516)</span>
+                         </code>
+                 </div>
+
+                 <div class="solved">
+                     
+                     <span class="mr-1" id="challenge-solved-count-text"> الوقت المتبقي لانتهاء التصويت</span>
+                     <code>
+                         <span class="mr-1" id="challenge-solved-count-value">(516)</span>
+                     </code>
+                    
+                 </div>
+             </div>
+        </div>
+    </div>
+</main>
+    
 
 
-
-    <div id="modelVote" class="modelVote"  >
+    {{-- <div id="modelVote" class="modelVote"  >
         <div>
               <div class="vote">
                 <h3 id="ltitle"></h3>
@@ -156,27 +111,56 @@
             
         </div>
        
+    </div> --}}
+{{-- -------------------------------------------------------------------------------------------- --}}
+    <div class="model" id="modelVote">
+ 
+         <div class="content content-error" id="content-error">
+                 <img src="error.svg" alt="medal vector" class="medal-image">
+                 <h4 style="color: #dd3939;">
+                    لا يمكنك التصويت اكثر من مرة!
+                 </h4>
+         </div> 
+ 
+        <div class="content content-success" id="content-success">
+             <img src="success.svg" alt="medal vector" class="medal-image">
+             <h4 style="color: #78a80f">
+                 !تمت التصويت بنجاح
+             </h4>
+        </div> 
+ 
+         <div class="content content-vote" id="content-vote">
+             <h4 style="color: #fff" id="ltitle">
+                 
+             </h4>
+             <input type="hidden" name="lid" id="lid">
+             <div class="inputBox">
+                 <input type="submit" value="تصويت" class="btn btn-primary" id="create_vote" onclick="createVote()">
+             </div>
+             <div class="inputBox">
+                 <a href="" id="payment" class="btn btn-outline-light" > طلب شراء اصوات</a>
+             </div>
+        </div> 
+        <a class="close" onclick="modelToggleVote();"><svg width="28" height="28" viewBox="0 0 36 36" data-testid="close-icon"><path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"></path></svg></a>
+       
     </div>
-
-
+ 
 @endsection
 
 @section('scripts')
     <script>
   
-        function modelVoteShow(id, name) {
-            $('#ltitle').text('هل انت متأكد من رغبتك في التصويت ل' +  name + '؟');
+  function modelToggleVote(id, name) {
+            document.getElementById('content-success').style.display = 'none';
+            document.getElementById('content-error').style.display = 'none';
+            document.getElementById('content-vote').style.display = 'flex';
+            $('#ltitle').text('هل ترغب في التصويت ل' +  name + '؟');
             $("input[name='lid']").val(id);
             $("#payment").attr("href", "{{ url('payment/') }}" + '/' + id );
-            document.getElementById('modelVote').style.display = 'block';
+            const model = document.getElementById('modelVote');
+            model.classList.toggle('active');
         }
 
-        function modelVoteClose() {
-            document.getElementById('modelVote').style.display = 'none';
-            document.getElementById('success').style.visibility = 'hidden';
-            document.getElementById('error').style.visibility = 'hidden';
-
-        }
 
         function createVote() {
             let id = $("input[name='lid']").val();
@@ -193,14 +177,18 @@
                     'unique_url': unique_url
                 },
                 success: function (data) {
+                    console.log(data)
                     if(data.status == true) {
-                        document.getElementById('success').style.visibility = 'visible';
+                        document.getElementById('content-success').style.display = 'flex';
+                        document.getElementById('content-error').style.display = 'none';
+                        document.getElementById('content-vote').style.display = 'none';
                         if(data['vo_uniqueUrl_ted']){
                             localStorage.setItem(data['vo_uniqueUrl_ted'], data.vo_uniqueUrl_ted);
                         }
                     } else {
-                        document.getElementById('success').style.visibility = 'hidden';
-                        document.getElementById('error').style.visibility = 'visible';
+                        document.getElementById('content-success').style.display = 'none';
+                        document.getElementById('content-error').style.display = 'flex';
+                        document.getElementById('content-vote').style.display = 'none';
                     }
                     
                 }, error: function(reject) {

@@ -20,6 +20,7 @@ class ContestantsWidget extends AbstractWidget
      * Treat this method as a controller action.
      * Return view() or other content to display.
      */
+  
     public function run()
     {
         //
@@ -28,5 +29,14 @@ class ContestantsWidget extends AbstractWidget
             'config' => $this->config,
             'contestants' => $contestants,
         ]);
+    }
+
+    public function container()
+    {
+
+        return [
+            'element'       => 'div',
+            'attributes'    => 'onclick="modelToggleVote({{$contestant->id}}, \'{{$contestant->name }}\');" class="col-12 text-center leaderboard-card"',
+        ];
     }
 }

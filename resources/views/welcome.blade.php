@@ -15,97 +15,91 @@
         </style>
 
         <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-                direction: rtl;
-            }
-            p{
-                text-align: center;
-                direction: rtl;
-                text-align: center;
-                font-size: 16px;
-                margin-top: 0px;
-            }
-            .modelCreate,
-            .modelVote
-            {
-                display: none;
-                 position: fixed;
-                 z-index: 10;
-            }
-            .modelCreate > div,
-            .modelVote > div
-            {
-                position: fixed; 
-                top: 20%; right: 40px; 
-                left: 40px; height: 400px;
-                background-image: radial-gradient(#fff,#705f77 ); 
-                border: 2px solid #6b4879; 
-                border-radius: 14px; 
-                color: #000; 
-                box-shadow: 0 0 1005px #000;
-        
-            }
-            .modelCreate form 
-            {
-                display: grid;
-                width: 0;
-                text-align: center;
-                margin: 50px 500px 0 0;
-            }
-           
-
-            .created_competition
-            {
-                display: none;
-                width: 0;
-                text-align: center;
-                margin: 50px 500px 0 0;
-            }
-            
+          
         </style>
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet"> 
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
         @yield('styles')
-        
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     </head>
     <body class="antialiased">
 
 
-        <div id="modelCreate" class=" modelCreate "  >
-            <div >
-                <form action="" method="POST" id="competition_form" class="create_competition">
-                    @csrf
-                        <label for="fname">اسم المسابقة</label>
-                        <input type="text" id="fname" name="name" placeholder="التحدي الكبير">
-                   
-                        <label for="lname">القوانين</label>
-                        <input type="text" id="lroles" name="roles" placeholder="لاتوجد قوانين">
-                        
-                        <label for="contestants">المتسابقين</label>
-                        <textarea id="contestants" name="contestants" placeholder="احمد
-                        ياسين" style="height:200px"></textarea>
-                        
-                        <button id="create_competition" >انشاء</button>
-                       
-                  </form>
+       
+        <div class="model" id="modelCreate">
+            
+                <div class="content content-create">
+                    <form action="" method="POST" id="competition_form" class="create_competition content">
+                        @csrf
+                                <div class="col-11 text-left rules positio-relative">
+                                    <h6 class="text-right text-muted px-2 mx-3">انشاء مسابقة جديدة</h6>
+                                    <hr>
+                                </div>
+                                <div class="inputBox">
+                                    <input  placeholder="اكتب اسم المسابقة" name="name" value="">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="text" placeholder="اكتب قوانين المسابقة" name="roles" >
+                                </div>
+                                <h4 style="color: #a88d8d;">اسماء المتسابقين</h4>
+                                <div class="inputBox" style="margin-top: 0;">
+                                    <textarea placeholder="احمد
+                                    محمد
+                                    ياسين" rows="2" name="contestants"></textarea>
+                                </div>
+                                <div class="inputBox" style="margin-top:40px">
+                                    <input type="submit" value="انشاء" class="btn btn-primary" id="create_competition" style="text-align: center">
+                                </div>
+                     </form>
+                    
+                  
+                     <div id="created_competition" class=" inputBox">
+                        <div class="inputBox" >
+                            <h6 >اسم المسابقة:
+                                <span style="color: #21aa30" id="lcompetition_name"></span>
+                            </h6>
+                        </div>
+                        <div class="inputBox" >
+                            <h6>قوانين المسابقة:
+                                <span style="color: #21aa30" id="lroles_competition"></span>
+                            </h6>
+                        </div>
+                        <div class="inputBox" >
+                            <h6>المتسابقين:
+                                <span style="color: #21aa30" id="lcontestants"></span>
+                            </h6>
+                        </div>
+                        <div class="inputBox" >
+                            <h6>رابط المسابقة :
+                                <a href="" id="lurl" style="color: #21aa30"></a>
+                            </h6>
+                        </div>
+                        <div class="inputBox" style="margin-top:40px">
+                            <input type="submit" value="نسخ الرابط" class="btn btn-primary" id="copy" style="text-align: center">
+                        </div>
+                    </div>
 
-                  <div id="created_competition" class="created_competition">
-                    <textarea name="content" id="content" ></textarea>
-                    <button>نسخ الاعلان</button>
-                  </div>
-
-                  <button id="modelCreateClose" onclick="modelCreateClose()">اغلاق</button>
-
-            </div>
-           
+            </div> 
+        
+            <a class="close" onclick="modelToggleCreate();"><svg width="28" height="28" viewBox="0 0 36 36" data-testid="close-icon"><path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"></path></svg></a>
+     
         </div>
+     
+
 
 
         @yield('content')
  
 
             
-        <div style="position: fixed; bottom: 5px; right: 0px; left: 0px; text-decoration: none; display: inline-block; border-radius: 14px; background-color: green; color: #fff;  text-align:center; padding: 14px 25px;cursor: pointer;" onclick="modelCreateShow(this)">
+       
+        <div class="create" onclick="modelToggleCreate();">
             إنشاء مسابقة جديدة مجاناً
         </div>
     </body>
@@ -115,33 +109,53 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/dc9e78ad18.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
 
     <script>
 
-
-        function modelCreateShow() {
-            document.getElementById('modelCreate').style.display = 'block';
-        }
-
-        function modelCreateClose() {
-            document.getElementById('competition_form').style.display = 'grid';
+        function modelToggleCreate() {
             document.getElementById('created_competition').style.display = 'none';
-            document.getElementById('modelCreate').style.display = 'none';
+            document.getElementById('competition_form').style.display = 'block';
+            const model = document.getElementById('modelCreate');
+            model.classList.toggle('active');
         }
+  
 
+      
         function successCreateCompetition(data, url)
         {
             document.getElementById('competition_form').style.display = 'none';
             document.getElementById('created_competition').style.display = 'grid';
-            document.getElementById("content").innerHTML = url;
+            document.getElementById("lurl").innerHTML = url;
+            $("#lurl").attr("href", url );
+            document.getElementById("lcompetition_name").innerHTML = data['name'];
+            document.getElementById("lroles_competition").innerHTML = data['roles'];
+            document.getElementById("lcontestants").innerHTML = data['contestants'];
+            
         }
 
+// copy url after create compotetion
+        $(document).on('click', '#copy', function(e) {
+            e.preventDefault();
+            var $temp = $("<input>");
+            var $url = $('#lurl').attr('href');
 
+            $("body").append($temp);
+            $temp.val($url).select();
+            document.execCommand("copy");
+            $temp.remove();
+        })
+
+// create competition
         $(document).on('click', '#create_competition', function(e) {
             e.preventDefault();
             let name = $("input[name='name']").val();
             let roles = $("input[name='roles']").val();
             let contestants = $("textarea[name='contestants']").val().split('\n');
+           
            const getNewUrl = (url, newPathName) => {
             let hostName = url.substr(0, url.lastIndexOf('/') + 1)
                 if(hostName == 'http://' || hostName == 'https://') {
@@ -161,14 +175,8 @@
                     'contestants': contestants
                 },
                 success: function (data) {
-                    console.log(data);
-                    // let url = '{{url()->current()}}' + '/' + data['unique_url'];
-
                     let url = '{{url()->current()}}';
                     successCreateCompetition(data, getNewUrl(url, data['unique_url']))
-
-                    
-
                 }, error: function(reject) {
                     
                 }
