@@ -15,7 +15,7 @@ class ContestantsWidget extends AbstractWidget
     protected $config = [
         'unique_url' => '',
     ];
-    public $reloadTimeout = 4;
+    public $reloadTimeout = 10;
     /**
      * Treat this method as a controller action.
      * Return view() or other content to display.
@@ -36,7 +36,7 @@ class ContestantsWidget extends AbstractWidget
 
         return [
             'element'       => 'div',
-            'attributes'    => 'onclick="modelToggleVote({{$contestant->id}}, \'{{$contestant->name }}\');" class="col-12 text-center leaderboard-card"',
+            'attributes'    => ' class="col-12 text-center leaderboard-card"',
         ];
     }
 }

@@ -17,7 +17,7 @@ class Counting extends AbstractWidget
     protected $config = [
         'unique_url' => '',
     ];
-    public $reloadTimeout =10;
+    public $reloadTimeout =4;
 
     /**
      * Treat this method as a controller action.
