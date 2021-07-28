@@ -62,7 +62,7 @@
                      
                      <span class="mr-1" id="challenge-solved-count-text"> الوقت المتبقي لانتهاء التصويت</span>
                      <code>
-                         {{-- <span class="mr-1" id="challenge-solved-count-value">(516)</span> --}}
+                         <span class="mr-1 text-right" id="count_down" >()</span>
                      </code>
                     
                  </div>
@@ -105,7 +105,20 @@
        
     </div>
   
+    <div class="model " id="modelFinished">
  
+      
+       <div class="content content-success" id="content-success">
+            <img src="success.svg" alt="medal vector" class="medal-image"  id="img-element">
+            <h4 style="color: #0fa89b" id="h4-element">
+                !  عفوا...انتهت المسابقة
+            </h4>
+       </div> 
+
+
+       <a class="close" onclick="modelToggleVote();" id="close"><svg width="28" height="28" viewBox="0 0 36 36" data-testid="close-icon"><path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"></path></svg></a>
+      
+   </div>
  
 @endsection
 
@@ -113,8 +126,63 @@
 
 
 
-    <script>
+<script>
+
+
+
+
+
+
+    // 
+  var countDownDate = new Date("{{$data['contest_end']}}").getTime();
+  // Update the count down every 1 second
+  var x = setInterval(function() {
   
+    
+    var now = new Date().getTime();
+    console.log(now)
+  
+    
+    var distance = countDownDate - now;
+    console.log(distance)
+    
+    
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+    document.getElementById("count_down").innerHTML = "("+ days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s " + ")";
+  
+    
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("count_down").innerHTML = "(" + 'انتهت المسابقة' +")";
+    }
+  }, 1000);
+
+
+if(navigator.cookieEnabled == false) {
+    document.getElementById('close').style.visibility = 'hidden'
+    $("#img-element").attr("src", "error.svg");
+    document.getElementById('h4-element').innerHTML = 'من فضلك فعل ال cookie و أعد تحميل الصفحة';
+    document.getElementById('h4-element').style.direction = 'rtl';
+    document.getElementById('h4-element').style.color = 'red';
+    const model = document.getElementById('modelFinished');
+    model.classList.add('active');
+} else {
+    if ("{{Carbon\Carbon::now()}}" >= "{{$data['contest_end']}}") {
+   
+    function modelToggleVote() {
+        const model = document.getElementById('modelFinished');
+            model.classList.toggle('active');
+    }
+    function createVote() {
+        const model = document.getElementById('modelVote');
+            model.classList.toggle('active');
+    }
+}else {
 
 
   function modelToggleVote(id, name) {
@@ -166,6 +234,8 @@
 
         }
 
-       
+}
+}
+
     </script>
 @endsection

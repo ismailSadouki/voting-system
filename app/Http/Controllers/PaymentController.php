@@ -37,7 +37,7 @@ class PaymentController extends Controller
         // Set your secret key. Remember to switch to your live secret key in production.
         // See your keys here: https://dashboard.stripe.com/apikeys
         \Stripe\Stripe::setApiKey(
-            env('STRIPE_API_KEY')
+            'sk_test_51JHbojDkfUAfHzI5GFW2rbyxSmApiH50i1TYCenxbEGrGraiMJODLpD4GXViU7kLdVtcazWgek45B4brhiD9BKgU0064WWq1ax'
             );
             
             
@@ -47,7 +47,7 @@ class PaymentController extends Controller
             
             $charge = \Stripe\Charge::create([
                 'amount' => $price*100,
-                'currency' => env('STRIPE_CURRENCY'),
+                'currency' => 'usd',
                 'description' => 'Example charge',
                 'source' => $token,
                 'metadata' => ['order_id' => uniqid()],

@@ -50,6 +50,12 @@
                                     محمد
                                     ياسين" rows="2" name="contestants" required></textarea>
                                 </div>
+                                <h6 style="color: #c82e2e;
+                                             visibility: hidden;
+                                             text-align: center;
+                                             direction: rtl;
+                                            margin-top: 10px;" id="create-error">تأكد من ملأ كل الحقول!</h6>
+                                
                                 <div class="inputBox" style="margin-top:40px">
                                     <input type="submit" value="انشاء" class="btn btn-primary" id="create_competition" style="text-align: center">
                                 </div>
@@ -173,9 +179,11 @@
                 },
                 success: function (data) {
                     let url = '{{url()->current()}}';
-                    successCreateCompetition(data, getNewUrl(url, data['unique_url']))
+                    successCreateCompetition(data, getNewUrl(url, data['unique_url']));
+                    
                 }, error: function(reject) {
                     
+                    document.getElementById('create-error').style.visibility = 'visible'
                 }
             })
 

@@ -12,6 +12,7 @@ class Competition extends Model
     protected $fillable = [
         'name',
         'roles',
-        'unique_url'
+        'unique_url',
+        'contest_end'
     ];
 }
