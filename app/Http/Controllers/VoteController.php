@@ -16,15 +16,21 @@ class VoteController extends Controller
         $ip = FacadesRequest::ip();
         $vo_uniqueUrl_ted = 'vo'.$request->unique_url.'ted';
 
-        $verification_ip = Verification::where([
+        $verification = Verification::where([
             'ip' => $ip,
             'unique_url' => $request->unique_url
         ])->first();
 // 
+        if(isset($verification)){
+            $verification_ip = $verification->ip;
+        }else {
+            $verification_ip = '1';
+        }
             
-        if( $verification_ip != null || Cookie::get($vo_uniqueUrl_ted) == $vo_uniqueUrl_ted  || $request->voted == $vo_uniqueUrl_ted){
+        if($verification_ip == $ip ){
             return response()->json([
                 'status' => false,
+             
             ]);  
         } else {
 
@@ -45,8 +51,7 @@ class VoteController extends Controller
                 'status' => true,
                 'number_of_votes' => $vote->number_of_votes,
                 'vo_uniqueUrl_ted' => $vo_uniqueUrl_ted,
-                'ip' => $ip,
-                'verification_ip' => $verification_ip
+                
             ]);
 
         }
