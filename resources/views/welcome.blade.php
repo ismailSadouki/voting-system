@@ -42,13 +42,13 @@
                                     <input  placeholder="اكتب اسم المسابقة" name="name" value="" required="">
                                 </div>
                                 <div class="inputBox">
-                                    <input type="text" placeholder="اكتب قوانين المسابقة" name="roles"  required="">
+                                    <input type="text" placeholder="اكتب قوانين المسابقة" name="roles"  required>
                                 </div>
                                 <h4 style="color: #a88d8d;">اسماء المتسابقين</h4>
                                 <div class="inputBox" style="margin-top: 0;">
                                     <textarea placeholder="احمد
                                     محمد
-                                    ياسين" rows="2" name="contestants" required=""></textarea>
+                                    ياسين" rows="2" name="contestants" required></textarea>
                                 </div>
                                 <div class="inputBox" style="margin-top:40px">
                                     <input type="submit" value="انشاء" class="btn btn-primary" id="create_competition" style="text-align: center">
