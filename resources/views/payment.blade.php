@@ -140,47 +140,244 @@
                 background-color: #fefde5 !important;
                 }
 
+
+
+      .packages
+      {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .packages div
+      {
+        margin: 10px;
+      }
+      .packages div label
+      {
+        cursor: pointer;
+      }
+      .packages div label input[type="radio"]
+      {
+        display: none; 
+      }
+      .packages div label span 
+      {
+        position: relative;
+        display: inline-block;
+        background: #424242;
+        padding: 15px 30px;
+        color: #555;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+        border-radius: 30px;
+        font-size: 20px;
+        transition: .5s;
+        user-select: none;
+        overflow: hidden;
+        direction: rtl;
+      }
+      .packages div label span::before
+      {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: rgba(255, 255, 255, .1);
+      }
+      .packages div:nth-child(6n + 1) label input[type="radio"]:checked ~ span
+      {
+        background: #0f0;
+        color: #fff;
+        box-shadow: 0 2px 20px #0f0;
+      }
+      .packages div:nth-child(6n + 2) label input[type="radio"]:checked ~ span
+      {
+        background: #e91e63;
+        color: #fff;
+        box-shadow: 0 2px 20px #e91e63;
+      }
+      .packages div:nth-child(6n + 3) label input[type="radio"]:checked ~ span
+      {
+        background: #ffeb3b;
+        color: #fff;
+        box-shadow: 0 2px 20px #ffeb3b;
+      }
+
+      .packages .inputBox 
+      {
+        margin-top:40px;
+        position: relative;
+        width: 100%;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+
+      }
+      .packages .inputBox input 
+      {
+        max-width: 150px;
+        color: #fff;
+        background-color: #00adbb;
+        width: 100%;
+        border: 1px solid rgba(0, 0,0 ,0.2);
+        padding: 15px;outline: none;font-size: 18px;
+        padding-bottom: 15px !important;
+      }
+      .packages .inputBox input:hover
+      {
+        color: #fff;
+        background-color: #008a95;
+        border-color: #007e88;
+      }
     </style>
 @endsection
 
 @section('content')
-
-    <section>
-        <div class="grid-container">
-            <div class="item">
-                <h2> هل ترغب في اضافة اصوات ل{{ $contestant->name }} في المسابقة:{{$competition->name}}</h2>
-            </div>
-
-
-            <div class="item item-four c1">
-                <form action="{{ route('payment') }}" method="POST" id="payment-form">
-                    @csrf
-
-                    <input type="hidden" value="50" name="number_votes">
-                    <input type="hidden" value="{{$contestant->id}}" name="id">
-                    <div class="form-row">
-                        <label for="card-element">
-                            credit or debit card
-                        </label>
-                        <div id="card-element">
-                
-                        </div>
-                
-                        <div id="card-errors" role="alert">
-                
-                        </div>
-                    </div>
-                
-                    <button>Submit Payment</button>
-                </form>
-              
-            </div>
-
-      
+<main>
+  <div class="container">
+    
+      <div class="row justify-content-center">
+          <div class="col-11 text-center leaderboard-pl-filter-margin">
+               <h1 class="mt-5" style="font-size: 47px;">
+                   <span style="color: rgb(25, 183, 193);">
+                                    <h2> هل ترغب في شراء اصوات ل<span style="color: #e83e8c;">{{ $contestant->name }}</span> في مسابقة: <span style="color: #e83e8c;">{{$competition->name}}</span></h2>
+                   </span>
+               </h1>
           </div>
-    </section>
+          <div class="container">
+            <form action="{{ route('payment') }}" method="POST" id="payment-form">
+              @csrf
+              <div class="row justify-content-center">
+                  <div class="col-11 col-md-10 mt-3" style="border: 1px solid #1c1e21;padding: 20px 10px 20px 10px;">
+                      <div class="row justify-content-center leaderboard-section">
+                          <div class="col-12 text-center leaderboard-title-card" style="margin: 40px 0 !important;">
+                              <nav>
+                                   <div class="col-12 leaderboard-update-text mt-0">
+                                       <h3 class="mt-6" >
+                                           <span style="color: rgb(134, 133, 151);">
+                                              <h2> اختر الباقة</h2>
+                                          </span>
+                                       </h3>
+                                     
+                                      
+                                   </div>
 
+                                   <div class="col-12 leaderboard-update-text mt-4 packages justify-content-center">
+                                      <div>
+                                        <label>
+                                          <input type="radio" name="radio" value="1">
+                                          <span>
+                                            10 اصوات ب 2$
+                                          </span>
+                                        </label>
+                                      </div>
+                                      <div>
+                                        <label>
+                                          <input type="radio" name="radio" value="2">
+                                          <span>
+                                            50 صوت ب 10$
+                                          </span>
+                                        </label>
+                                      </div>
+                                      <div>
+                                        <label>
+                                          <input type="radio" name="radio" value="3">
+                                          <span>
+                                            100 صوت ب 20$
+                                          </span>
+                                        </label>
+                                      </div>
+                                   </div>
+                                   
+                              </nav>
+                            
+                          </div>
 
+                          
+
+                          
+                           
+                      </div>
+
+                      <div class="row justify-content-center leaderboard-section">
+                        <div class="col-12 text-center leaderboard-title-card" >
+                            <nav>
+                                 <div class="col-12 leaderboard-update-text mb-0 mt-0">
+                                     <h3 class="mt-6 card-element mb-0" >
+                                         <span style="color: rgb(134, 133, 151); margin: 10px;">
+                                            <h2> بطاقة الائتمان أو الخصم</h2>
+                                        </span>
+                                     </h3>
+                                   
+                                    
+                                 </div>
+
+                                 <div class="col-12 leaderboard-update-text mt-4 packages justify-content-center">
+                                    <div>
+                                      
+                    
+                                        <input type="hidden" value="{{$contestant->id}}" name="id">
+                                        <div class="form-row">
+                                           
+                                            <div id="card-element" style="width: 300px">
+                                    
+                                            </div>
+                                         
+                                              <div id="card-errors" role="alert" style="color: rgb(216, 83, 83)">
+                                    
+                                              </div>
+                                           
+                                            
+                                        </div>
+                                        <div class="inputBox" >
+                                          <input type="submit" value="ادفع" class="btn btn-primary" >
+                                        </div>
+                              
+                                    </div>
+                                 </div>
+                                 
+                            </nav>
+                          
+                        </div>
+
+                        
+
+                        
+                         
+                    </div>
+                  </div>
+              </div>
+        </form>
+
+          </div>
+      </div>
+
+      <div class="row col-12 " style="margin-bottom: 140px;">
+           <div class="container">
+         
+
+                  
+                   
+
+               <div class="solved">
+                   
+                   <span class="mr-1" id="challenge-solved-count-text"> الوقت المتبقي لانتهاء التصويت</span>
+                   <code>
+                       <span class="mr-1" id="challenge-solved-count-value">(516)</span>
+                   </code>
+                  
+               </div>
+           </div>
+      </div>
+
+  </div>
+</main>
+  
+  
 
    
 

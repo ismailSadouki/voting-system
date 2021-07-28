@@ -7,6 +7,7 @@ use App\Models\Contestant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Rainwater\Active\Active;
 
 class CompetitionController extends Controller
 {
@@ -58,12 +59,13 @@ class CompetitionController extends Controller
         $competition = Competition::where('unique_url', $unique_url)->first();
         $number_of_votes = Contestant::where('unique_url', $unique_url)->sum('number_of_votes');
        
-        
+       
+
         $data = [
             'unique_url' => $unique_url,
             'competition_name' => $competition->name,
             'competition_roles' => $competition->roles,
-            'number_of_votes' => $number_of_votes
+         
         ];
         
         return view('show_competition',compact('data'));

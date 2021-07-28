@@ -1,9 +1,5 @@
 @extends('welcome')
 
-@section('styles')
-
-@endsection
-
 @section('content')
 
 <main>
@@ -57,34 +53,16 @@
         <div class="row col-12 " style="margin-bottom: 140px;">
              <div class="container">
            
-                 <div class="solved">
-                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16 mx-1 text-primary" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="challenge-solved-count-check-image"><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
-                     </svg>
-                     <span class="mr-1" id="challenge-solved-count-text">مجموع الأصوات</span>
-                     <code>
-                         <span class="mr-1" id="challenge-solved-count-value">({{$data['number_of_votes']}})</span>
-                     </code>
-                     <br>
-                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16 mx-1 text-primary" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="challenge-solved-count-check-image"><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
-                         </svg>
-                         <span class="mr-1" id="challenge-solved-count-text">المتواجدون اﻵن</span>
-                         <code>
-                             <span class="mr-1" id="challenge-solved-count-value">(516)</span>
-                         </code>
-                     <br>
-                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16 mx-1 text-primary" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="challenge-solved-count-check-image"><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
-                         </svg>
-                         <span class="mr-1" id="challenge-solved-count-text">اكثر تواجد كان</span>
-                         <code>
-                             <span class="mr-1" id="challenge-solved-count-value">(516)</span>
-                         </code>
-                 </div>
+  
+                    @widget('counting', ['unique_url' => $data['unique_url']])
+                     
+
 
                  <div class="solved">
                      
                      <span class="mr-1" id="challenge-solved-count-text"> الوقت المتبقي لانتهاء التصويت</span>
                      <code>
-                         <span class="mr-1" id="challenge-solved-count-value">(516)</span>
+                         {{-- <span class="mr-1" id="challenge-solved-count-value">(516)</span> --}}
                      </code>
                     
                  </div>
@@ -95,24 +73,6 @@
     
 
 
-    {{-- <div id="modelVote" class="modelVote"  >
-        <div>
-              <div class="vote">
-                <h3 id="ltitle"></h3>
-                <p style="color: red; visibility: hidden" class="error" id="error" >لا يمكنك التصويت أكثر من مرة</p>
-                <p style="color: green; visibility: hidden" class="success" id="success" >تم التصويت بنجاح</p>
-                <input type="hidden" name="lid" id="lid" value="">
-                <hr>
-                <div class="create_vote" id="create_vote" onclick="createVote()">نعم</div>
-                <a href="" class="payment cl2" id="payment">طلب فزعة 100 صوت</a>
-                 <button id="modelVoteClose" onclick="modelVoteClose()">اغلاق</button>
-    
-              </div>
-            
-        </div>
-       
-    </div> --}}
-{{-- -------------------------------------------------------------------------------------------- --}}
     <div class="model" id="modelVote">
  
          <div class="content content-error" id="content-error">
@@ -144,12 +104,19 @@
         <a class="close" onclick="modelToggleVote();"><svg width="28" height="28" viewBox="0 0 36 36" data-testid="close-icon"><path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"></path></svg></a>
        
     </div>
+  
+ 
  
 @endsection
 
 @section('scripts')
+
+
+
     <script>
   
+
+
   function modelToggleVote(id, name) {
             document.getElementById('content-success').style.display = 'none';
             document.getElementById('content-error').style.display = 'none';
@@ -159,6 +126,7 @@
             $("#payment").attr("href", "{{ url('payment/') }}" + '/' + id );
             const model = document.getElementById('modelVote');
             model.classList.toggle('active');
+
         }
 
 

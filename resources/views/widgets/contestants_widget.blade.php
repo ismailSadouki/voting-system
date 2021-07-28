@@ -2,7 +2,7 @@
 
 @foreach ($contestants as $key => $contestant)
 {{-- <div class="item" onclick="modelVoteShow({{$contestant->id}}, '{{$contestant->name }}')"> --}}
-<a class="col-12 text-center leaderboard-card losos" onclick="modelToggleVote({{$contestant->id}}, '{{$contestant->name }}');">
+<a class="col-12 text-center leaderboard-card losos" onclick="modelToggleVote('{{$contestant->id}}', '{{$contestant->name }}')">
     <div class="row" style="justify-content: space-between;">
         <div class="col-3 leaderboard-card-text" style="color:{{ $key == 0 ? ' #e83e8c' : '' }}">{{ $contestant->number_of_votes }}</div>
         
