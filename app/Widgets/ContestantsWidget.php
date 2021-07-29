@@ -15,7 +15,7 @@ class ContestantsWidget extends AbstractWidget
     protected $config = [
         'unique_url' => '',
     ];
-    // public $reloadTimeout = 10;
+    public $reloadTimeout = 7;
     /**
      * Treat this method as a controller action.
      * Return view() or other content to display.
