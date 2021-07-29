@@ -93,10 +93,14 @@
              <h4 style="color: #fff" id="ltitle">
                  
              </h4>
+             <form action="" method="POST" id="competition_form" class="create_competition content">
+                @csrf
              <input type="hidden" name="lid" id="lid">
              <div class="inputBox">
                  <input type="submit" value="تصويت" class="btn btn-primary" id="create_vote" onclick="createVote()">
              </div>
+            </form>
+
              <div class="inputBox">
                  <a href="" id="payment" class="btn btn-outline-light" > طلب شراء اصوات</a>
              </div>
