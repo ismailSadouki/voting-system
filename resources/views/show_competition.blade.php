@@ -203,6 +203,7 @@ if(navigator.cookieEnabled == false) {
 
         let timout = true; 
         function createVote() {
+            e.preventDefault();
             if(timout == false) {
                   return timout;
               }
