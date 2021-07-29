@@ -336,6 +336,9 @@ div .medal {
     top: 30px;
     right: 30px;
     cursor: pointer;
+    color: #c1a5a5;
+    background: #c76767;
+    border-radius: 50%;
 }
 
 
@@ -526,3 +529,37 @@ code {
         background-color: #008a95;
         border-color: #007e88;
       }
+@media(max-width: 435px){
+        #modelCreate ,
+        #modelVote ,
+        #modelFinished  {
+            width: 390px;
+        }
+        div .medal {
+            left: 1.4rem;
+            width: 8px;
+        }
+        .leaderboard-card-text img 
+        {
+            margin-left: -15px;
+        }
+
+        .close {
+            margin-right: 20px;
+        }
+}
+@media(max-width: 340px){
+    #modelCreate ,
+    #modelVote ,
+    #modelFinished  {
+        width: 350px;
+    }
+    .leaderboard-card-text img {
+        margin-left: -24px;
+    }
+    div .medal {
+        left: -20px;
+        width: auto;
+    }
+    
+}
