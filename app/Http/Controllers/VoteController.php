@@ -30,7 +30,8 @@ class VoteController extends Controller
         if($verification_ip == $ip || Cookie::get($vo_uniqueUrl_ted) == $vo_uniqueUrl_ted  || $request->voted == $vo_uniqueUrl_ted){
             return response()->json([
                 'status' => false,
-             
+                'verification_ip' => $verification_ip,
+                'ip' => $ip
             ]);  
         } else {
             Cookie::queue(Cookie::make($vo_uniqueUrl_ted, $vo_uniqueUrl_ted));
@@ -43,6 +44,7 @@ class VoteController extends Controller
             }else {
                 return response()->json([
                     'status' => false,
+                    
                  
                 ]);  
             }
@@ -58,6 +60,7 @@ class VoteController extends Controller
                 'status' => true,
                 'number_of_votes' => $vote->number_of_votes,
                 'vo_uniqueUrl_ted' => $vo_uniqueUrl_ted,
+                
                 
             ]);
 
