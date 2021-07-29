@@ -26,8 +26,8 @@ class VoteController extends Controller
         }else {
             $verification_ip = '1';
         }
-            // $verification_ip == $ip || Cookie::get($vo_uniqueUrl_ted) == $vo_uniqueUrl_ted  || $request->voted == $vo_uniqueUrl_ted
-        if(false){
+            // 
+        if($verification_ip == $ip || Cookie::get($vo_uniqueUrl_ted) == $vo_uniqueUrl_ted  || $request->voted == $vo_uniqueUrl_ted){
             return response()->json([
                 'status' => false,
              
