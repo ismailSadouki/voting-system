@@ -44,7 +44,7 @@ class CompetitionController extends Controller
 
             'unique_url' => $unique_url,
 
-            'contest_end' => Carbon::now()->addHour(24)
+            'contest_end' => $request->dateTime
 
         ]);
 

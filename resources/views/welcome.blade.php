@@ -25,9 +25,10 @@
     </head>
     <body class="antialiased">
 
-
        
-        <div class="model" id="modelCreate">
+       
+       
+        <div class="model" id="modelCreate" style="    padding: 30px 50px 20px;">
             
                 <div class="content content-create">
                     <form action="" method="POST" id="competition_form" class="create_competition content">
@@ -39,6 +40,12 @@
                                 <div class="inputBox">
                                     <input  placeholder="اكتب اسم المسابقة" name="name" value="" required="">
                                 </div>
+                                <h4  style="color: #a88d8d;margin-bottom: 0 ;font-size: 18px !important;direction: rtl;"><sup style="color:rgb(190, 107, 107)">*اختياري</sup>وقت و تاريخ انتهاء المسابقة</h4>
+                                
+                          <div class="inputBox" style="margin-top: 20px;">
+                            <input type="date" id="date" name="date" ><input type="time" id="time" name="time"  value="00:00:00">
+                          </div>
+
                                 <div class="inputBox">
                                     <input type="text" placeholder="اكتب قوانين المسابقة" name="roles"  required>
                                 </div>
@@ -54,7 +61,7 @@
                                              direction: rtl;
                                             margin-top: 10px;" id="create-error">تأكد من ملأ كل الحقول!</h6>
                                 
-                                <div class="inputBox" style="margin-top:40px">
+                                <div class="inputBox" style="margin-top:20px">
                                     <input type="submit" value="انشاء" class="btn btn-primary" id="create_competition" style="text-align: center">
                                 </div>
                      </form>
@@ -162,6 +169,19 @@
             let name = $("input[name='name']").val();
             let roles = $("input[name='roles']").val();
             let contestants = $("textarea[name='contestants']").val().split('\n');
+
+            let date = document.getElementById('date').value;
+            let time = document.getElementById('time').value;
+            var dateTime;
+            if (date) {
+                if (time) {
+                    var dateTime = date + ' ' + time;
+                } else {
+                    var dateTime = date + ' ' + '00:00:00';
+                }
+            } else {
+                var dateTime = "{{Carbon\Carbon::now()->addHour(24)}}";
+            }
            
            const getNewUrl = (url, newPathName) => {
             let hostName = url.substr(0, url.lastIndexOf('/') + 1)
@@ -178,7 +198,8 @@
                     '_token': "{{ csrf_token() }}",
                     'name': name,
                     'roles': roles,
-                    'contestants': contestants
+                    'contestants': contestants,
+                    'dateTime': dateTime
                 },
                 success: function (data) {
                     let url = '{{url()->current()}}';
