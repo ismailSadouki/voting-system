@@ -28,10 +28,12 @@ class VoteController extends Controller
         }
             // 
         if($verification_ip == $ip || Cookie::get($vo_uniqueUrl_ted) == $vo_uniqueUrl_ted  || $request->voted == $vo_uniqueUrl_ted){
+            $verifications = Verification::all();
             return response()->json([
                 'status' => false,
                 'verification_ip' => $verification_ip,
-                'ip' => $ip
+                'ip' => $ip,
+                'verifications' => $verifications
             ]);  
         } else {
             Cookie::queue(Cookie::make($vo_uniqueUrl_ted, $vo_uniqueUrl_ted));

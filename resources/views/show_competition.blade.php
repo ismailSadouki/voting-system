@@ -231,6 +231,7 @@ if(navigator.cookieEnabled == false) {
                         timout = true;
                     } else {
                         console.log('ip in database is ' + data['verification_ip'] + ' and my ip is ' + data['ip'])
+                        console.log(data)
                         document.getElementById('content-success').style.display = 'none';
                         document.getElementById('content-error').style.display = 'flex';
                         document.getElementById('content-vote').style.display = 'none';
