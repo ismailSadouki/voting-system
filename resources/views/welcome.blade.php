@@ -52,6 +52,12 @@
                     flex-wrap: wrap;
                     width: 270px;
                 }
+                .desc 
+                {
+                    position: absolute;
+                    top: 230px;
+                    text-align: center;
+                }
             </style>
         @endisset
             
@@ -59,7 +65,11 @@
     </head>
     <body class="antialiased" style="background: linear-gradient(to right, #b92b27, #1565c0);">
 
-       
+       @isset($d)
+           <div class="desc">
+            انشأ تصويت جديد وشارك رابط المسابقة دون الحاجة الى تسجيل عضوية
+           </div>
+       @endisset
        
        
         <div class="model" id="modelCreate" style="    padding: 30px 50px 20px;">
@@ -74,7 +84,10 @@
                                 <div class="inputBox">
                                     <input  placeholder="اكتب اسم المسابقة" name="name" value="" required="">
                                 </div>
-                                <h4  style="color: #a88d8d;margin-bottom: 0 ;font-size: 18px !important;direction: rtl;"><sup style="color:rgb(190, 107, 107)">*اختياري</sup>وقت و تاريخ انتهاء المسابقة</h4>
+                                <h4  style="color: #a88d8d;margin-bottom: 0 ;font-size: 18px !important;direction: rtl;">
+                                    وقت و تاريخ انتهاء المسابقة
+                                    <sup style="color:rgb(190, 107, 107)">*اختياري</sup>
+                                </h4>
                                 
                           <div class="inputBox" style="margin-top: 20px;">
                             <input type="date" id="date" name="date" ><input type="time" id="time" name="time"  value="00:00:00">
