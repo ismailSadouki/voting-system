@@ -204,7 +204,7 @@ if(navigator.cookieEnabled == false) {
 
         }
 
-        let timout = true; 
+        var timout = true; 
         function createVote() {
             if(timout == false) {
                   return timout;
