@@ -207,19 +207,15 @@ if(navigator.cookieEnabled == false) {
   
         var timout = true; 
         function createVote() {
-        console.log(timout + '1')
-            if(timout == false) {
-        console.log(timout + '2')
 
-                  return timout;
+            if(timout == false) {
+                   return timout;
               }
-              timout = false;
-              console.log(timout + '3')
+             
 
             let id = $("input[name='lid']").val();
             let unique_url = "{{$data['unique_url']}}"
             let voted = localStorage.getItem('vo' + unique_url + 'ted');
-            console.log('4')
             $.ajax({
                 type: 'post',
                 url: "{{ route('vote') }}",
