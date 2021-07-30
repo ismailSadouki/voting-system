@@ -61,7 +61,7 @@
                  <div class="solved">
                      
                      <span class="mr-1" id="challenge-solved-count-text"> الوقت المتبقي لانتهاء التصويت</span>
-                     <code>
+                     <code id="code">
                          <span class="mr-1 text-right" id="count_down" >()</span>
                      </code>
                     
@@ -160,6 +160,7 @@
     
     if (distance < 0) {
       clearInterval(x);
+      document.getElementById('code').style.direction = 'rtl';
       document.getElementById("count_down").innerHTML = "(" + 'انتهت المسابقة' +")";
     }
   }, 1000);
@@ -174,7 +175,11 @@ if(navigator.cookieEnabled == false) {
     const model = document.getElementById('modelFinished');
     model.classList.add('active');
 } else {
-    if ("{{Carbon\Carbon::now()}}" >= "{{$data['contest_end']}}") {
+    let dateNow = "{{Carbon\Carbon::now()}}"
+    let contestEndDate = new Date().getTime();
+    let distance = contestEndDate - dateNow;
+    // "{{Carbon\Carbon::now()}}" >= "{{$data['contest_end']}}"
+    if (distance < 0) {
    
     function modelToggleVote() {
         const model = document.getElementById('modelFinished');

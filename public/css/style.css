@@ -8,7 +8,7 @@ body, html {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: rgb(16, 18, 21);
+    background: linear-gradient(to right, #b92b27, #1565c0);
 }
 
 main ,nav
@@ -382,7 +382,7 @@ code {
     line-height: 26px;
     text-align: right;
     word-break: break-word;
-    direction: ltr !important;
+    direction: ltr ;
 }
 
 .create
