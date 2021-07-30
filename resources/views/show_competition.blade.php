@@ -130,7 +130,7 @@
 
 <script>
 
-
+console.log('1')
 
 
 
@@ -175,6 +175,7 @@ if(navigator.cookieEnabled == false) {
     const model = document.getElementById('modelFinished');
     model.classList.add('active');
 } else {
+
     let dateNow = "{{Carbon\Carbon::now()}}"
     let contestEndDate = new Date().getTime();
     let distance = contestEndDate - dateNow;
@@ -191,7 +192,7 @@ if(navigator.cookieEnabled == false) {
     }
 }else {
 
-
+ console.log('2')
   function modelToggleVote(id, name) {
             document.getElementById('content-success').style.display = 'none';
             document.getElementById('content-error').style.display = 'none';
@@ -203,9 +204,10 @@ if(navigator.cookieEnabled == false) {
             model.classList.toggle('active');
 
         }
-
+        console.log('3')
         var timout = true; 
         function createVote() {
+            console.log('c')
             if(timout == false) {
                   return timout;
               }
@@ -214,15 +216,12 @@ if(navigator.cookieEnabled == false) {
             let id = $("input[name='lid']").val();
             let unique_url = "{{$data['unique_url']}}"
             let voted = localStorage.getItem('vo' + unique_url + 'ted');
-
+            console.log('4')
             $.ajax({
-                headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
                 type: 'post',
                 url: "{{ route('vote') }}",
                 data: {
-                    // '_token': "{{ csrf_token() }}",
+                    '_token': "{{ csrf_token() }}",
                     'id': id,
                     'voted': voted,
                     'unique_url': unique_url
