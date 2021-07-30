@@ -155,8 +155,8 @@
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     // document.getElementById("count_down").innerHTML = "("+ days + "يوم " + hours + "ساعة "
     // + minutes + "دقيقة " + seconds + "ثانية " + ")";
-    document.getElementById("count_down").innerHTML = "("+ seconds + "ثانية " + minutes + "دقيقة "
-    + hours + "ساعة " + days + "يوم " + ")";
+    document.getElementById("count_down").innerHTML = "("+ seconds + "ةيناث " + minutes + "ةقيقد "
+    + hours + "ساةعاسعة " + days + "موي " + ")";
   
     
     if (distance < 0) {
