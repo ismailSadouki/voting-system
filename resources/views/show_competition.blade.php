@@ -192,7 +192,7 @@ if(navigator.cookieEnabled == false) {
     }
 }else {
 
- console.log('2')
+
   function modelToggleVote(id, name) {
             document.getElementById('content-success').style.display = 'none';
             document.getElementById('content-error').style.display = 'none';
@@ -204,14 +204,17 @@ if(navigator.cookieEnabled == false) {
             model.classList.toggle('active');
 
         }
-        console.log('3')
+  
         var timout = true; 
         function createVote() {
-            console.log('c')
+        console.log(timout + '1')
             if(timout == false) {
+        console.log(timout + '2')
+
                   return timout;
               }
               timout = false;
+              console.log(timout + '3')
 
             let id = $("input[name='lid']").val();
             let unique_url = "{{$data['unique_url']}}"
