@@ -217,10 +217,13 @@ if(navigator.cookieEnabled == false) {
             let unique_url = "{{$data['unique_url']}}"
             let voted = localStorage.getItem('vo' + unique_url + 'ted');
             $.ajax({
+                headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
                 type: 'post',
                 url: "{{ route('vote') }}",
                 data: {
-                    '_token': "{{ csrf_token() }}",
+                    // '_token': "{{ csrf_token() }}",
                     'id': id,
                     'voted': voted,
                     'unique_url': unique_url
