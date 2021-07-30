@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $d = 'tree';
+    return view('welcome',compact('d'));
 });
 
 

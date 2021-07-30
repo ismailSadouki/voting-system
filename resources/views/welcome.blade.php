@@ -22,8 +22,42 @@
 
         @yield('styles')
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        @isset($d)
+            <style>
+                body, html {
+                    font-family: 'El Messiri', sans-serif;
+                    font-size: 15px;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #212529;
+                    text-align: left;
+                    background: linear-gradient(to right, #b92b27, #1565c0);
+                    justify-content: center;
+                    display: flex;
+                    margin-top: 153px;
+                }
+                .create {
+                    position: relative;
+                    background-color: #003438;
+                    text-decoration: none;
+                    color: #fff;
+                    padding: 14px 25px;
+                    text-align: center;
+                    direction: rtl;
+                    border: 1px solid #777;
+                    border-radius: 8px;
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    width: 270px;
+                }
+            </style>
+        @endisset
+            
+       
     </head>
-    <body class="antialiased">
+    <body class="antialiased" style="background: linear-gradient(to right, #b92b27, #1565c0);">
 
        
        
