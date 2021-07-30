@@ -130,7 +130,7 @@
 
 <script>
 
-console.log('1')
+
 
 
 
@@ -223,7 +223,7 @@ if(navigator.cookieEnabled == false) {
                 type: 'post',
                 url: "{{ route('vote') }}",
                 data: {
-                    // '_token': "{{ csrf_token() }}",
+                    '_token': "{{ csrf_token() }}",
                     'id': id,
                     'voted': voted,
                     'unique_url': unique_url
