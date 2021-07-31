@@ -228,7 +228,7 @@
                     var dateTime = date + ' ' + '00:00:00';
                 }
             } else {
-                var dateTime = "{{Carbon\Carbon::now()->addHour(24)}}";
+                var dateTime = null;
             }
            
            const getNewUrl = (url, newPathName) => {
