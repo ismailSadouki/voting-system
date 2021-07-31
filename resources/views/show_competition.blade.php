@@ -158,9 +158,9 @@
     document.getElementById("count_down").innerHTML = "("+  " ةيناث" + seconds   + " ةقيقد" + minutes
      + " ةعاس" + hours  + " موي"  + days + ")";
   
+     console.log("{{$data['contest_end']}}")
     
     if (distance < 0) {
-        console.log("{{$data['contest_end']}}")
       clearInterval(x);
       document.getElementById('code').style.direction = 'rtl';
       document.getElementById("count_down").innerHTML = "(" + 'انتهت المسابقة' +")";
