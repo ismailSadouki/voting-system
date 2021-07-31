@@ -165,6 +165,9 @@
       document.getElementById("count_down").innerHTML = "(" + 'انتهت المسابقة' +")";
     }
   }, 1000);
+    }else {
+        document.getElementById('code').style.direction = 'rtl';
+      document.getElementById("count_down").innerHTML = "(" + 'لم يتم تحديد تاريخ الانتهاء' +")";
     }
  
 
