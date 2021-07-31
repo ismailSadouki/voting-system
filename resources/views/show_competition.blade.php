@@ -160,6 +160,7 @@
   
     
     if (distance < 0) {
+        console.log("{{$data['contest_end']}}")
       clearInterval(x);
       document.getElementById('code').style.direction = 'rtl';
       document.getElementById("count_down").innerHTML = "(" + 'انتهت المسابقة' +")";
