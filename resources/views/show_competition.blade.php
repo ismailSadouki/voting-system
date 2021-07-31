@@ -136,7 +136,7 @@
 
 
     // 
-    if("{{$data['contest_end']}}" != 'null') {
+    if(!"{{$data['contest_end']}}") {
         var countDownDate = new Date("{{$data['contest_end']}}").getTime();
   // Update the count down every 1 second
   var x = setInterval(function() {
