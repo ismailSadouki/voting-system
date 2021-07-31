@@ -6,6 +6,7 @@ use App\Models\Competition;
 use App\Models\Contestant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -94,6 +95,7 @@ class CompetitionController extends Controller
 
     public function show(Request $request, $unique_url)
     {
+        Cookie::queue(Cookie::make('hi', true));
         $competition = Competition::where('unique_url', $unique_url)->first();
         $number_of_votes = Contestant::where('unique_url', $unique_url)->sum('number_of_votes');
        
