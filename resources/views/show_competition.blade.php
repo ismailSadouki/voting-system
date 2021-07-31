@@ -212,7 +212,11 @@ if(navigator.cookieEnabled == false) {
                    return timout;
               }
              
-
+              $.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
             let id = $("input[name='lid']").val();
             let unique_url = "{{$data['unique_url']}}"
             let voted = localStorage.getItem('vo' + unique_url + 'ted');
@@ -222,8 +226,6 @@ if(navigator.cookieEnabled == false) {
     // },
 
                 type: 'post',
-    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-
                 url: "{{ route('vote') }}",
                 data: {
                     // '_token': "{{ csrf_token() }}",
