@@ -158,7 +158,6 @@
     document.getElementById("count_down").innerHTML = "("+  " ةيناث" + seconds   + " ةقيقد" + minutes
      + " ةعاس" + hours  + " موي"  + days + ")";
   
-     console.log("{{$data['contest_end']}}")
     
     if (distance < 0) {
       clearInterval(x);
