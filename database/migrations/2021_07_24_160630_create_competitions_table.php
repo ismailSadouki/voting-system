@@ -19,7 +19,7 @@ class CreateCompetitionsTable extends Migration
             $table->string('roles');
             $table->string('unique_url')->unique();
             $table->integer('largest_presence')->default(0);
-            $table->string('contest_end');
+            $table->string('contest_end')->nullable();
             $table->timestamps();
         });
     }
